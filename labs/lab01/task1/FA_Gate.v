@@ -16,12 +16,12 @@ module FA_Gate(
 );
   wire ps, pc1, pc2;
 
-  // Part (b): gates reordered (or first, then xors, then ands)
-  // Part (c): #(2) delay added to every gate
-  or  #(2) (cout, pc1, pc2);
-  xor #(2) (sum,  cin, ps);
-  xor #(2) (ps,   a,   b);
-  and #(2) (pc2,  cin, ps);
-  and #(2) (pc1,  a,   b);
+  // Part (b): gates reordered -- Verilog is concurrent so order doesn't
+  // change the output, only the readability.
+  or  (cout, pc1, pc2);
+  xor (sum,  cin, ps);
+  xor (ps,   a,   b);
+  and (pc2,  cin, ps);
+  and (pc1,  a,   b);
 
 endmodule
